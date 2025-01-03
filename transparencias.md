@@ -744,9 +744,12 @@ Para anotarlo en el texto:
 - [`pdflscape`](https://ctan.org/pkg/pdflscape): Páginas horizontales. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L36).
 - [`pgfgantt`](https://ctan.org/pkg/pgfgantt): Diagramas de Gantt. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L44-L99).
 - [`dirtree`](https://ctan.org/pkg/dirtree): Árboles de directorios. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/implementation.tex#L22-L47).
-- [`syntax`](https://ctan.org/pkg/syntax): Definición de lenguajes en _Backus-Naur Form_. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/design.tex#L211-L282).
+- [`syntax`](https://ctan.org/pkg/syntax): Lenguajes en _Backus-Naur Form_. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/design.tex#L211-L282).
 - [`rajayonin/srs-latex`](https://github.com/rajayonin/srs-latex): Requisitos de software. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/analysis.tex#L36-L416).
 - [`algpseudocode`](https://ctan.org/pkg/algpseudocode): Definición de algoritmos. [_Guía_](https://es.overleaf.com/learn/latex/Algorithms#The_algpseudocode_and_algorithm_packages).
+- [`pgfplots`](https://ctan.org/pkg/pgfplots): Gráficas. [_Guía_](https://www.overleaf.com/learn/latex/Pgfplots_package)
+- [`csvsimple`](https://ctan.org/pkg/csvsimple): Importar archivos CSV.
+- [`circuitikz`](https://ctan.org/pkg/circuitikz): Circuitos eléctricos. [_Guía_](https://www.overleaf.com/learn/latex/CircuiTikz_package)
 
 
 
