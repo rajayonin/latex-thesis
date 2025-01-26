@@ -43,23 +43,24 @@ _Grupo de Usuarios de Linux_
 ## $\LaTeX$
 <!-- header: '' -->
 Herramienta y lenguaje de programación ($\TeX$) para la creación de documentos de alta calidad.
-- Uso de archivos de texto plano.
-- Permite el uso de **plantillas** y _macros_ para simplificar y estandarizar el proceso.
-- Extremadamente útil para $e - c \cdot u^a = c_i \sqrt{o} + \frac{n}{e^s}$ y bibliografía.
-- Numeración automática de capítulos, figuras, tablas, referencias bibliográficas... 
+- Uso de archivos de texto plano
+- Permite el uso de **plantillas** y _macros_ para simplificar y estandarizar el proceso
+- Extremadamente útil para $e - c \cdot u^a = c_i \sqrt{o} + \frac{n}{e^s}$ y bibliografía
+- Numeración automática de capítulos, figuras, tablas, notas a pie de página, referencias...
 - Generación automática de índices y glosarios
 
 
 ---
 <!-- header: '$\LaTeX$' -->
 ### Cómo usar $\LaTeX$
-- Online: [Overleaf](https://overleaf.com/)
-- Linux: Instala `texlive-full` (para Arch, todos los paquetes `texlive-*`)
-- Windows: Instala [MiKTeX](https://miktex.org/download#win) y [Strawberry Perl](https://strawberryperl.com/)
+- **Online**: [Overleaf](https://overleaf.com/)
+- **Linux**: Instala `texlive-full`
+<!-- Para Arch, todos los paquetes `texlive-*` -->
+- **Windows**: Instala [MiKTeX](https://miktex.org/download#win) y [Strawberry Perl](https://strawberryperl.com/)
    ```powershell
    winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
    ```
-- MacOS: Instala [MacTeX](https://www.tug.org/mactex/mactex-download.html)
+- **MacOS**: Instala [MacTeX](https://www.tug.org/mactex/mactex-download.html)
   ```zsh
   brew install --cask mactex
   sudo tlmgr install latexmk
@@ -72,8 +73,8 @@ Para usar SVGs en local es necesario instalar [Inkscape](https://inkscape.org/) 
 #### Extensiones VS Code
 - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
    - Recuerda añadir el parámetro `-shell-escape` (ver [LaTeX Workshop FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk))
-   -  Puedes habilitar el conteo de palabras estableciendo `latex-workshop.wordcount` a `onSave` en los ajustes.  
-   Más información [en la Wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words)
+   -  Puedes habilitar el [conteo de palabras](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words) estableciendo `latex-workshop.wordcount` a `onSave` en los ajustes.  
+
 
 - [LTeX+](https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus): Corrector ortográfico.
    - Puedes cambiar el idioma a través de la configuración parámetro `ltex.language`
@@ -259,6 +260,7 @@ Y luego volver a compilar.
 Nociones generales:
 - Comentarios con `%`
 - Los caracteres especiales deben ser escapados:
+  <!-- La mayor parte de los errores son causados por esto -->
    - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`, e.g. `\_`
    - `\`, `^`, `~` requieren un comando específico: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
 
@@ -461,6 +463,14 @@ La imagen será incrustada de distintas formas, dependiendo de su formato:
 Donde `.X` es el porcentaje del ancho de la imagen con respecto al ancho de la página, e.g. `.7` (70%).
 
 
+---
+Para generar las imágenes:
+- [draw.io](https://drawio.com): La vieja confiable
+  - Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto [_[how?]_](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
+  - Exportar como SVG
+- [PlantUML](https://plantuml.com/es/): Lenguaje declarativo para UML
+  - Exportar como SVG
+- [TikZ](https://tikz.net/): Puro $TeX$ (para _tryhards_)
 
 
 ---
@@ -634,7 +644,6 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
   series    = {},
   url       = {},
 }
-
 ```
 ---
 ```bibtex
@@ -741,15 +750,15 @@ Para anotarlo en el texto:
 
 ---
 ### Paquetes útiles
-- [`pdflscape`](https://ctan.org/pkg/pdflscape): Páginas horizontales. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L36).
-- [`pgfgantt`](https://ctan.org/pkg/pgfgantt): Diagramas de Gantt. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L44-L99).
-- [`dirtree`](https://ctan.org/pkg/dirtree): Árboles de directorios. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/implementation.tex#L22-L47).
-- [`syntax`](https://ctan.org/pkg/syntax): Lenguajes en _Backus-Naur Form_. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/design.tex#L211-L282).
-- [`rajayonin/srs-latex`](https://github.com/rajayonin/srs-latex): Requisitos de software. [_Ejemplo_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/analysis.tex#L36-L416).
-- [`algpseudocode`](https://ctan.org/pkg/algpseudocode): Definición de algoritmos. [_Guía_](https://es.overleaf.com/learn/latex/Algorithms#The_algpseudocode_and_algorithm_packages).
-- [`pgfplots`](https://ctan.org/pkg/pgfplots): Gráficas. [_Guía_](https://www.overleaf.com/learn/latex/Pgfplots_package)
-- [`csvsimple`](https://ctan.org/pkg/csvsimple): Importar archivos CSV.
-- [`circuitikz`](https://ctan.org/pkg/circuitikz): Circuitos eléctricos. [_Guía_](https://www.overleaf.com/learn/latex/CircuiTikz_package)
+- [`pdflscape`](https://ctan.org/pkg/pdflscape): Páginas horizontales. [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L36)
+- [`pgfgantt`](https://ctan.org/pkg/pgfgantt): Diagramas de Gantt [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L44-L99).
+- [`dirtree`](https://ctan.org/pkg/dirtree): Árboles de directorios [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/implementation.tex#L22-L47)
+- [`syntax`](https://ctan.org/pkg/syntax): Lenguajes en _Backus-Naur Form_ [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/design.tex#L211-L282)
+- [`rajayonin/srs-latex`](https://github.com/rajayonin/srs-latex): Requisitos de software
+- [`algpseudocode`](https://ctan.org/pkg/algpseudocode): Definición de algoritmos [_[Guía]_](https://es.overleaf.com/learn/latex/Algorithms#The_algpseudocode_and_algorithm_packages)
+- [`pgfplots`](https://ctan.org/pkg/pgfplots): Gráficas [_[Guía]_](https://www.overleaf.com/learn/latex/Pgfplots_package)
+- [`csvsimple`](https://ctan.org/pkg/csvsimple): Importar archivos CSV
+- [`circuitikz`](https://ctan.org/pkg/circuitikz): Circuitos eléctricos [_[Guía]_](https://www.overleaf.com/learn/latex/CircuiTikz_package)
 
 
 
@@ -765,6 +774,7 @@ Para anotarlo en el texto:
 - [CTAN (Comprehensive TeX Archive Network)](https://ctan.org/)
 - [ldcas-uc3m/TFG](https://github.com/ldcas-uc3m/TFG)
 - [L. Prieto - Generación de documentos en LaTeX](https://youtu.be/cFieGJljKog) (2021)
+- [L. Prieto - Plantilla TFG UC3M LaTeX](https://github.com/lpgonzalez/uc3m_tfg_latex_template_en)
 
 
 ---
