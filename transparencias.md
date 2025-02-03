@@ -21,7 +21,8 @@ style: |
 <!-- _paginate: skip -->
 ![bg contain opacity:.15](img/gul_logo.svg)
 # Memorias de TFG en $\LaTeX$
-Por Luis Daniel Casais Mezquida
+Por Luis Daniel Casais Mezquida  
+[@rajayonin](https://github.com/rajayonin)
 
 
 <br>
@@ -263,6 +264,7 @@ Nociones generales:
   <!-- La mayor parte de los errores son causados por esto -->
    - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`, e.g. `\_`
    - `\`, `^`, `~` requieren un comando específico: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
+- Comillas _guays_ con ` ``'' ` o `` `' ``
 
 ---
 <!-- header: '**How to $\LaTeX$**' -->
@@ -514,7 +516,7 @@ Pequeñas macros con argumentos que permiten automatizar y simplificar el trabaj
 
 ---
 
-Extremadamente útil meterlas en un archivo `mymacros.sty`:
+Extremadamente útil meterlas en un paquete, e.g. archivo `mymacros.sty`:
 ```tex
 \ProvidesPackage{mymacros}[Auxiliary helper macros]
 % [...]
@@ -628,7 +630,7 @@ Las bibliografías se gestionan con [BibteX](https://www.bibtex.org/).
 - Para hacer que se respeten las mayúsculas, rodéalas de `{}`, e.g. `{Mi {C}arro}`
 - Es recomendable añadir el [DOI](https://www.doi.org/the-identifier/what-is-a-doi/) siempre que se pueda
 
-En el texto, se cita con `\cite{<id>}`. Si quieres incluír el texto en tu cita, usa `\textcquote{<id>}{...}`
+En el texto, se cita con `\cite{<id>}`. Si quieres incluir el texto en tu cita, usa `\textcquote{<id>}{...}`
 
 ---
 #### Tipos de bibliografía
@@ -713,6 +715,8 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 }
 ```
 
+Más ejemplos en [mi TFG](https://github.com/ldcas-uc3m/TFG/blob/main/report/references.bib).
+
 
 ---
 ### Glosario
@@ -749,16 +753,28 @@ Para anotarlo en el texto:
 
 
 ---
-### Paquetes útiles
+### Paquetes
+«Librerías», «módulos»... código de otra gente.
+```tex
+\usepackage{lipsum}
+```
+Se importan en el archivo principal (`report.tex`), **antes** del `\begin{document}`.
+
+En archivos de paquetes (`.sty`, `.cls`), se usa `\RequirePackage`.
+
+
+---
+#### Paquetes útiles
 - [`pdflscape`](https://ctan.org/pkg/pdflscape): Páginas horizontales. [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L36)
-- [`pgfgantt`](https://ctan.org/pkg/pgfgantt): Diagramas de Gantt [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L44-L99).
+- [`pgfgantt`](https://ctan.org/pkg/pgfgantt): Diagramas de Gantt [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/plan.tex#L44-L99)
 - [`dirtree`](https://ctan.org/pkg/dirtree): Árboles de directorios [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/implementation.tex#L22-L47)
 - [`syntax`](https://ctan.org/pkg/syntax): Lenguajes en _Backus-Naur Form_ [_[Ejemplo]_](https://github.com/ldcas-uc3m/TFG/blob/main/report/parts/design.tex#L211-L282)
 - [`rajayonin/srs-latex`](https://github.com/rajayonin/srs-latex): Requisitos de software
+<!-- No hagan caso del código de mi TFG para rajayonin/srs-latex, ya que ha cambiado la forma de usar el paquete -->
 - [`algpseudocode`](https://ctan.org/pkg/algpseudocode): Definición de algoritmos [_[Guía]_](https://es.overleaf.com/learn/latex/Algorithms#The_algpseudocode_and_algorithm_packages)
-- [`pgfplots`](https://ctan.org/pkg/pgfplots): Gráficas [_[Guía]_](https://www.overleaf.com/learn/latex/Pgfplots_package)
+- [`pgfplots`](https://ctan.org/pkg/pgfplots): Gráficas en puro $\LaTeX$ [_[Guía]_](https://www.overleaf.com/learn/latex/Pgfplots_package)
 - [`csvsimple`](https://ctan.org/pkg/csvsimple): Importar archivos CSV
-- [`circuitikz`](https://ctan.org/pkg/circuitikz): Circuitos eléctricos [_[Guía]_](https://www.overleaf.com/learn/latex/CircuiTikz_package)
+- [`circuitikz`](https://ctan.org/pkg/circuitikz): Circuitos eléctricos en puro $\LaTeX$ [_[Guía]_](https://www.overleaf.com/learn/latex/CircuiTikz_package)
 
 
 
