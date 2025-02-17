@@ -1,5 +1,5 @@
 # Transparencias para la charla "Memorias de TFG en $\LaTeX$"
-
+[Grabación de la charla](https://youtu.be/a197TAd7Wsw?).
 
 ## Pre-requisites
 This presentation uses [Marp](https://marp.app/), the Markdown Presentation Ecosystem.
