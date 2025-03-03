@@ -64,7 +64,6 @@ Herramienta y lenguaje de programación ($\TeX$) para la creación de documentos
 - **MacOS**: Instala [MacTeX](https://www.tug.org/mactex/mactex-download.html):
   ```zsh
   brew install --cask mactex
-  sudo tlmgr install latexmk
   ```
 
 Para usar SVGs (en local) es necesario instalar [Inkscape](https://inkscape.org/) y añadirlo al PATH.
@@ -302,9 +301,10 @@ Donde `.X` es el porcentaje del ancho de la imagen con respecto al ancho de la p
 ---
 Para generar las imágenes:
 - [draw.io](https://drawio.com): La vieja confiable
-  - [Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
-  - Exportar como SVG
+  1. [Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
+  2. Exportar como SVG
 - [PlantUML](https://plantuml.com/es/): Lenguaje declarativo para UML
+  - [Incrustar en LaTeX](https://gist.github.com/rajayonin/642d1d8d1e3fdff2b83af97f46d99564)
   - Exportar como SVG
 - [TikZ](https://tikz.net/): Puro $TeX$ (para _tryhards_)
 
@@ -328,6 +328,29 @@ Similar a las figuras, es necesario incrustarlas de la siguiente forma:
 También puedes usar `H`.
 
 Para generar las tablas (entorno `tabular`), recomiendo usar un [generador de tablas](https://www.tablesgenerator.com/latex_tables).
+
+---
+
+Si la tabla es demasiado ancha:
+- Usar [`adjustbox`](https://ctan.org/pkg/adjustbox) alrededor del `tabular`:
+  ```latex
+  \usepackage{adjustbox}
+  ```
+  ```latex
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{...} ... \end{tabular}
+  \end{adjustbox}
+  ``` 
+- Meterla en una página horizontal con [`pgfplots`](https://ctan.org/pkg/pgfplots):
+  ```latex
+  \usepackage{pgfplots}
+  ```
+  ```latex
+  \begin{landscape}
+    \ttabox[\FBwidth]{...}{...}
+  \end{landscape}
+  ``` 
+
 
 
 
