@@ -630,7 +630,7 @@ En archivos de paquetes (`.sty`, `.cls`), se usa `\RequirePackage`.
 <!-- header: '' -->
 [github.com/ldcas-uc3m/thesis-template](https://github.com/ldcas-uc3m/thesis-template)
 - Hecha por mí, para vosotros ~~jugadores~~
-- Basada en la [guía de la biblioteca de la UC3M](https://uc3m.libguides.com/en/thesis/writing) para las tesis, y en [su propia plantilla](https://www.overleaf.com/latex/templates/bachelor-thesis-template-uc3m-ieee-style/rtmtnzvxjnwt)
+- Basada en la [guía de la biblioteca de la UC3M](https://uc3m.libguides.com/TFG/escribir) para las tesis, y en [su propia plantilla](https://www.overleaf.com/latex/templates/bachelor-thesis-template-uc3m-ieee-style/rtmtnzvxjnwt)
 - Bonita y fácil de usar
 
 
