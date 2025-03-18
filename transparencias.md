@@ -45,6 +45,7 @@ _Grupo de Usuarios de Linux_
 <!-- header: '' -->
 Herramienta y lenguaje de programación ($\TeX$) para la creación de documentos de alta calidad.
 - Uso de archivos de texto plano
+<!-- Los saltos de línea no cuentan... en la mayor parte de situaciones -->
 - Permite el uso de **plantillas** y _macros_ para simplificar y estandarizar el proceso
 - Extremadamente útil para $e - c \cdot u^a = c_i \sqrt{o} + \frac{n}{e^s}$ y bibliografía
 - Numeración automática de capítulos, figuras, tablas, notas a pie de página, referencias...
@@ -55,12 +56,19 @@ Herramienta y lenguaje de programación ($\TeX$) para la creación de documentos
 <!-- header: '$\LaTeX$' -->
 ### Cómo usar $\LaTeX$
 - **Online**: [Overleaf](https://overleaf.com/)
-- **Linux**: Instala `texlive-full`
-<!-- Para Arch, todos los paquetes `texlive-*` -->
+- **Linux**: Instala [TeX Live](https://www.tug.org/texlive/):
+  - [APT](https://wiki.debian.org/AptCLI) / [AUR](https://aur.archlinux.org/): `texlive-full`
+  - [DNF](https://dnf.readthedocs.io/en/latest/): `texlive-scheme-full`
+<!--
+TeX Live: Están los paquetes base y las dependencias. Para quitar dolores de cabeza, instalar tó.
+-->
 - **Windows**: Instala [MiKTeX](https://miktex.org/download#win) y [Strawberry Perl](https://strawberryperl.com/):
-   ```powershell
-   winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
-   ```
+  ```powershell
+  winget install MiKTeX.MiKTeX StrawberryPerl.StrawberryPerl
+  ```
+<!--
+MiKTeX: Una vez instalado, abrirlo, ir a Updates, y actualizar los paquetes
+-->
 - **MacOS**: Instala [MacTeX](https://www.tug.org/mactex/mactex-download.html):
   ```zsh
   brew install --cask mactex
@@ -68,16 +76,22 @@ Herramienta y lenguaje de programación ($\TeX$) para la creación de documentos
 
 Para usar SVGs (en local) es necesario instalar [Inkscape](https://inkscape.org/) y añadirlo al PATH.
 
+<!--
+Es recomendable compilar en local.
+La plantilla compila en Overleaf, mi TFG no (demasiado tiempo)
+-->
+
 ---
 
 #### IDEs
-- [TeXworks](https://www.tug.org/texworks/): _Plug-and-play_ (preinstalado con MiKTeX)
-    > Recuerda añadir el parámetro `-shell-escape` (`Editar` > `Preferencias` > `Compilación` > `Editar` `pdfLaTeX+MakeIndex+BibTeX`)
+- [TeXworks](https://www.tug.org/texworks/): _Plug-and-play_ (preinstalado con [MiKTeX](https://miktex.org/download#win))
+    > Recuerda añadir `-shell-escape`:
+    `Editar` > `Preferencias` > `Compilación` > `pdfLaTeX+MakeIndex+BibTeX` > `Editar`
 - [VS Code](https://code.visualstudio.com/): La vieja confiable
   - [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop): Extensión para $\LaTeX$
-    > Recuerda [añadir el parámetro `-shell-escape`](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk)
+    > Recuerda [añadir `-shell-escape`](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ#how-to-pass--shell-escape-to-latexmk)
   - [LTeX+](https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus): Corrector ortográfico
-    > Puedes cambiar el idioma a través del [parámetro `ltex.language`](https://ltex-plus.github.io/ltex-plus/settings.html#ltexlanguage)
+    > Cambiar el idioma: [`ltex.language`](https://ltex-plus.github.io/ltex-plus/settings.html#ltexlanguage)
 
 
 
@@ -90,8 +104,9 @@ Nociones generales:
 - Comentarios con `%`
 - Los caracteres especiales deben ser escapados:
   <!-- La mayor parte de los errores son causados por esto -->
-   - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`, e.g. `\_`
-   - `\`, `^`, `~` requieren un comando específico: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
+   - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`,
+   (e.g. `\_`, `\$`)
+   - `\`, `^`, `~` requieren comando: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
 - Comillas _guays_ con ` ``'' ` o `` `' ``
 
 ---
@@ -249,9 +264,9 @@ También puedes anidar las listas.
 - `\subsection{...}`: Subsección, o apartado; e.g. `1.1.1`
 - `\subsubsection{...}`: Subapartado; e.g. `1.1.1.1`
 
-Usa `*` para que no quede enumerado, e.g. `\subsubsection*{...}`.
+Usa `*` para que no quede enumerado, e.g. `\section*{}`.
 
-En esta plantilla, los capítulos empiezan en una página impar nueva.
+> En esta plantilla, los capítulos empiezan en una página impar nueva.
 
 
 ---
@@ -265,6 +280,7 @@ Crea una marca con `\label{<id>}`, y la puedes referenciar con:
 ---
 ### Figuras
 Es necesario incrustarlas de la siguiente forma:
+<!-- Este formato es necesario por razones de estilo -->
 ```tex
 \begin{figure}[htb]
   \ffigbox[\FBwidth]
@@ -304,8 +320,8 @@ Para generar las imágenes:
   1. [Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
   2. Exportar como SVG
 - [PlantUML](https://plantuml.com/es/): Lenguaje declarativo para UML
-  - [Incrustar en LaTeX](https://gist.github.com/rajayonin/642d1d8d1e3fdff2b83af97f46d99564)
   - Exportar como SVG
+  - [Incrustar en LaTeX](https://gist.github.com/rajayonin/642d1d8d1e3fdff2b83af97f46d99564) (en beta)
 - [TikZ](https://tikz.net/): Puro $TeX$ (para _tryhards_)
 
 
@@ -356,7 +372,7 @@ Si la tabla es demasiado ancha:
 
 ---
 ### Comandos
-Pequeñas macros con argumentos que permiten automatizar y simplificar el trabajo.
+Pequeñas _macros_ con argumentos que permiten automatizar y simplificar el trabajo.
 ```latex
 \newcommand{\helloworld}{Hello, world!}
 \helloworld  % Hello, world!
@@ -576,7 +592,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 }
 ```
 
-Más ejemplos en [mi TFG](https://github.com/ldcas-uc3m/TFG/blob/main/report/references.bib).
+Más ejemplos en [la documentación de CiteDrive](https://bibtex.eu/types/).
 
 
 ---
@@ -671,7 +687,7 @@ Ahora configuramos las propiedades para la portada:
 ```tex
 \degree{Grado en Ingeniería de Caminos}
 \title{Análisis, diseño, e implementación de un camino}
-\shorttitle{A.D.I de un camino}
+% \shorttitle{A.D.I de un camino}
 \author{Perico de los Palotes}
 \advisors{
    Segismundo de la Fuente
@@ -818,8 +834,8 @@ Y luego volver a compilar.
 
 ---
 ## Más información
-- [guluc3m/report-template](https://github.com/guluc3m/report-template)
 - [Overleaf knowledge base](https://www.overleaf.com/learn)
+- [guluc3m/report-template](https://github.com/guluc3m/report-template)
 - [LaTeX - Wikibooks](https://en.wikibooks.org/wiki/LaTeX)
 - [LaTeX Stack Exchange](https://tex.stackexchange.com/)
 - [CTAN (Comprehensive TeX Archive Network)](https://ctan.org/)
