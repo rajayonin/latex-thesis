@@ -99,7 +99,7 @@ La plantilla compila en Overleaf, mi TFG no (demasiado tiempo)
 <!-- header: '' -->
 ## How to $\LaTeX$
 Nociones generales:
-- Comandos empiezan con `\`
+- Comandos empiezan con `\` (e.g. `\whatever`)
 - Entornos con `\begin{<env>} ... \end{<env>}`
 - Comentarios con `%`
 - Los caracteres especiales deben ser escapados:
@@ -107,7 +107,7 @@ Nociones generales:
    - `#`, `$`, `%`, `&`, `_`, `{`, `}` se escapan con `\`,
    (e.g. `\_`, `\$`)
    - `\`, `^`, `~` requieren comando: `\textbackslash`, `\textasciicircum`, `\textasciitilde`
-- Comillas _guays_ con ` ``'' ` o `` `' ``
+- Comillas “guays” con ` ``'' ` o `` `' ``
 
 ---
 <!-- header: '**How to $\LaTeX$**' -->
@@ -151,32 +151,41 @@ sí
 ---
 
 Para saltar de párrafo, se deja una, o más, líneas en blanco
-- Para evitar la sangría (indentación) de la primera línea de un párrafo, se usa `\noindent`
 
-<br/>
+Para evitar la sangría (indentación) de la primera línea de un párrafo, se usa `\noindent`:
 
 
 <div class="columns">
 <div>
 
 ```tex
-y este es el final
-de mi párrafo.
+... y acabo el párrafo.
 
-Hola, párrafo nuevo.
+
+Hola, párrafo nuevo con
+sangría.
 ```
+
+
+... y acabo el párrafo.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Hola, párrafo nuevo con sangría.
 
 </div>
 <div>
 
 ```tex
-y este es el final
-de mi párrafo.
+... y acabo el párrafo.
 
 \noindent
 Hola, párrafo nuevo sin
 sangría.
 ```
+
+
+... y acabo el párrafo.
+
+Hola, párrafo nuevo sin sangría.
 
 </div>
 </div>
@@ -237,8 +246,8 @@ También puedes anidar las listas.
 \begin{enumerate}
   \item Primero
   \begin{itemize}
-    \item Primero A
-    \item Primero B
+    \item Primero uno
+    \item Luego otro
   \end{itemize}
   \item Segundo
 \end{enumerate}
@@ -248,8 +257,8 @@ También puedes anidar las listas.
 <div>
 
 1. Primero
-   - Primero A
-   - Primero B
+   - Primero uno
+   - Luego otro
 2. Segundo
 
 </div>
@@ -271,10 +280,10 @@ Usa `*` para que no quede enumerado, e.g. `\section*{}`.
 
 ---
 ### Referencias
-Crea una marca con `\label{<id>}`, y la puedes referenciar con:
-- `\ref{<id>}`: Pone el número de la sección/figura/etc. a la que se refiere.
-- `\nameref{<id>}`: Pone el nombre de la sección/figura/etc. a la que se refiere.
-- `\pageref{<id>}`: Pone el número de página de la sección/figura/etc. a la que se refiere.
+Crea una marca con `\label{<id>}`, y referénciala con:
+- `\ref{<id>}`: Número de la sección/figura/etc. a la que se refiere.
+- `\nameref{<id>}`: Nombre de la sección/figura/etc. a la que se refiere.
+- `\pageref{<id>}`: Número de página de la sección/figura/etc. a la que se refiere.
 
 
 ---
@@ -302,20 +311,20 @@ Puedes cambiar `htb` por `H` para forzar a que la figura quede en este punto exa
 La imagen será incrustada de distintas formas, dependiendo de su formato:
 - Si es _raster_ (e.g. PNG):
   ```tex
-  \includegraphics[width=.X\textwidth]{<imagen>}
+  \includegraphics[width=<W>\textwidth]{<filename>}
   ```
 - Si es vectorial (e.g. SVG):
   ```tex
   \includesvg
-    [inkscapelatex=false,width=.X\textwidth]
-    {<imagen>}
+    [inkscapelatex=false,width=<W>\textwidth]
+    {<filename>}
   ```
 
-Donde `.X` es el porcentaje del ancho de la imagen con respecto al ancho de la página, e.g. `.7` (70%).
+Donde `<W>` es el porcentaje del ancho de la imagen con respecto al ancho de la página, e.g. `.7` (70%).
 
 
 ---
-Para generar las imágenes:
+Para generar diagramas, etc.:
 - [draw.io](https://drawio.com): La vieja confiable
   1. [Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
   2. Exportar como SVG
@@ -332,18 +341,19 @@ Similar a las figuras, es necesario incrustarlas de la siguiente forma:
 ```tex
 \begin{table}[htb]
   \ttabbox[\FBwidth]
-    {\caption{...}}
+    {%
+      \caption{...}
+      \label{tab:<id>}
+    }
     {%
       \begin{tabular}{...}
-        % [...]
+        % ...
       \end{tabular}
     }
 \end{table}
 ```
 
-También puedes usar `H`.
-
-Para generar las tablas (entorno `tabular`), recomiendo usar un [generador de tablas](https://www.tablesgenerator.com/latex_tables).
+Para `tabular`, recomiendo usar un [generador de tablas](https://www.tablesgenerator.com/latex_tables).
 
 ---
 
@@ -392,7 +402,7 @@ Pequeñas _macros_ con argumentos que permiten automatizar y simplificar el trab
 Extremadamente útil meterlas en un paquete, e.g. archivo `mymacros.sty`:
 ```tex
 \ProvidesPackage{mymacros}[Auxiliary helper macros]
-% [...]
+% ...
 ```
 e importarlo en `report.tex` con:
 ```tex
@@ -410,8 +420,8 @@ Os dejo para que investiguéis:
 Ejemplo, macro para insertar figuras:
 
 ```tex
-% \graphicfigure[width]{filename}{caption}
-\newcommand{\graphicfigure}[3][.7] {
+% \rasterfigure[width]{filename}{caption}
+\newcommand{\rasterfigure}[3][.7] {
   \begin{figure}[htb]
     \ffigbox[\FBwidth]
       {%
@@ -424,7 +434,8 @@ Ejemplo, macro para insertar figuras:
 ```
 ```tex
 Observamos un perrito en la Figura \ref{fig:perro}.
-\graphicfigure[.5]{perro}{Un perrito}
+
+\rasterfigure[.5]{perro}{Un perrito}
 ```
 
 ---
@@ -483,13 +494,13 @@ Y crear ecuaciones (numeradas) con el entorno `equation`:
 
 ---
 La mayoría de símbolos usados se escriben con un comando:
-- `+`, `=`, `<`, `>` o `-` se usan tal cual
+- `+`, `-`, `<`, `>` y `=` se usan tal cual
 - `·` es `\cdot`
 - `≠` es `\ne`, `≤` es `\le`, `≥` es `\ge`
 - `α` es `\alpha`, `β` es `\beta`, `γ` es `\gamma`...
 - `Γ` es `\Gamma`, `Δ` es `\Delta`, `Θ` es `\Theta`...
 
-[Detexify](https://detexify.kirelabs.org/classify.html) es una herramienta online que te permite dibujar el símbolo y te dice el comando.
+[Detexify](https://detexify.kirelabs.org/classify.html) es una herramienta online que te permite dibujar el símbolo y obtener el comando.
 
 También hay herramientas para facilitar la creación de fórmulas, como [CodeCogs](https://editor.codecogs.com).
 
@@ -498,20 +509,22 @@ También hay herramientas para facilitar la creación de fórmulas, como [CodeCo
 
 ---
 ### Bibliografía
-Las bibliografías se gestionan con [BibteX](https://www.bibtex.org/).
+Las bibliografías se gestionan con [BibTeX](https://www.bibtex.org/).
 
-- Todas las referencias van guardadas en `references.bib`, con un ID asociado y una serie de parámetros
+- Todas las referencias van guardadas en `references.bib`, con un ID asociado y una serie de atributos
 - Para hacer que se respeten las mayúsculas, rodéalas de `{}`, e.g. `{Mi {C}arro}`
 - Es recomendable añadir el [DOI](https://www.doi.org/the-identifier/what-is-a-doi/) siempre que se pueda
 
 En el texto, se cita con `\cite{<id>}`. Si quieres incluir el texto en tu cita, usa `\textcquote{<id>}{...}`
 
 Puedes usar un gestor de referencias como [Zotero](https://www.zotero.org/).
+<!-- Google Scholar y la Biblioteca de la UC3M permiten exportar a BibTeX -->
 
 ---
 #### Tipos de bibliografía
 Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas referencia. Aquí dejo algunos ejemplos:
 
+<!-- libro -->
 ```bibtex
 @book{lamport1986latex,
   title     = {{LATEX}: A Document Preparation System},
@@ -524,6 +537,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 }
 ```
 ---
+<!-- artículo -->
 ```bibtex
 @article{Gardner1970fantastic,
   title   = {{The fantastic combinations of John
@@ -538,6 +552,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 }
 ```
 
+<!-- página web -->
 ```bibtex
 @online{mal,
   title   = {{Make-A-Lisp}},
@@ -550,6 +565,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 
 ---
 
+<!-- ISO -->
 ```tex
 @techreport{ISOcpp23,
   title       = {{Programming Languages -- C++}},
@@ -560,6 +576,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
                  Standardization}
 }
 ```
+<!-- IEE -->
 ```tex
 @techreport{IEEE830-1984,
   title       = {{IEEE Guide for Software
@@ -574,6 +591,7 @@ Hay diferentes tipos de bibliografía, dependiendo del recurso al que hagas refe
 ```
 
 ---
+<!-- conferencia -->
 ```tex
 @conference{creatorZenodo,
   title        = {{CREATOR: Simulador didáctico y genérico
@@ -598,6 +616,8 @@ Más ejemplos en [la documentación de CiteDrive](https://bibtex.eu/types/).
 ---
 ### Glosario
 
+<!-- es opcional, y un verdadero coñazo -->
+
 Las definiciones se guardan en `glossary.tex`:
 ```tex
 % definición
@@ -621,7 +641,7 @@ Las definiciones se guardan en `glossary.tex`:
 
 ---
 
-Para anotarlo en el texto:
+Para anotar términos en el texto:
 - `\gls{<id>}`: referencia al término
 - `\Gls{<id>}`: término con la primera letra en mayúscula
 - `\glspl{<id>}`: término en plural
@@ -633,7 +653,7 @@ Para anotarlo en el texto:
 ### Paquetes
 «Librerías», «módulos»... código de otra gente.
 ```tex
-\usepackage{lipsum}
+\usepackage{<nombre>}
 ```
 Se importan en el archivo principal (`report.tex`), **antes** del `\begin{document}`.
 
@@ -646,7 +666,7 @@ En archivos de paquetes (`.sty`, `.cls`), se usa `\RequirePackage`.
 <!-- header: '' -->
 [github.com/ldcas-uc3m/thesis-template](https://github.com/ldcas-uc3m/thesis-template)
 - Hecha por mí, para vosotros ~~jugadores~~
-- Basada en la [guía de la biblioteca de la UC3M](https://uc3m.libguides.com/TFG/escribir) para las tesis, y en [su propia plantilla](https://www.overleaf.com/latex/templates/bachelor-thesis-template-uc3m-ieee-style/rtmtnzvxjnwt)
+- Basada en la [guía de la biblioteca de la UC3M para el TFG](https://uc3m.libguides.com/TFG/escribir), y en [su propia plantilla](https://www.overleaf.com/latex/templates/bachelor-thesis-template-uc3m-ieee-style/rtmtnzvxjnwt)
 - Bonita y fácil de usar
 
 
@@ -705,7 +725,7 @@ Y empezamos el documento:
 ```tex
 \begin{document}
 
-  % [...]
+  % ...
 
 \end{document}
 ```
@@ -738,7 +758,7 @@ La plantilla viene con varios _comandos_ y _entornos_ para simplificar el proces
 % agradecimientos
 \begin{acknowledgements}
   Quiero dar las gracias a mi papá, a mi mamá,
-  a mi perro Pepe...
+  a mi perro Mutex...
 \end{acknowledgements}
 ```
 ```tex
@@ -763,14 +783,14 @@ La plantilla viene con varios _comandos_ y _entornos_ para simplificar el proces
 ---
 También cuenta con un entorno `thesis`, en el cual es donde se debe escribir la tesis en sí.
 
-Es recomendable separar los capítulos en archivos, e importarlos aquí.
+Es recomendable separar los capítulos en archivos, e importarlos aquí con `\includefrom{<path>}{<file>}`:
 
 ```tex
 \begin{thesis}
 
   \includefrom{parts/}{introduction.tex}
   \includefrom{parts/}{state_of_the_art.tex}
-  % [...]
+  % ...
   \includefrom{parts/}{conclusions.tex}
 
 \end{thesis}
@@ -795,7 +815,7 @@ Por último añadimos las partes finales:
 % apéndices
 \begin{appendices}
   
-  % [...]
+  % ...
 
 \end{appendices}
 ```
@@ -803,9 +823,9 @@ Por último añadimos las partes finales:
 
 ---
 ### Compilación (local, en terminal)
-Para compilar la memoria, usa:
+Para compilar la memoria, usaremos [`latexmk`](https://www.cantab.net/users/johncollins/latexmk/):
 ```
-latexmk -cd -shell-escape -pdf report.tex
+latexmk -shell-escape -pdf report.tex
 ```
 
 Para compilar el glosario es necesario (después de compilar la primera vez), usar el comando:
