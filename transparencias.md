@@ -328,6 +328,8 @@ Para generar diagramas, etc.:
 - [draw.io](https://drawio.com): La vieja confiable
   1. [Deshabilitar _Word Wrap_ y _Formatted Text_ en todo el texto](https://www.drawio.com/doc/faq/svg-export-text-problems#disable-formatted-text-and-word-wrap)
   2. Exportar como SVG
+- [Excalidraw](https://excalidraw.com/): Un rollito más _cool_
+  - Exportar como SVG
 - [PlantUML](https://plantuml.com/es/): Lenguaje declarativo para UML
   - Exportar como SVG
   - [Incrustar en LaTeX](https://gist.github.com/rajayonin/642d1d8d1e3fdff2b83af97f46d99564) (en beta)
